@@ -3,7 +3,8 @@ import {UserContext} from '../../App';
 import "firebase/auth";
 import * as firebase from "firebase/app";
 import firebaseConfig from './FirebaseConfig/FirebaseConfig';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import Event from '../Event/Event';
 const Login = () => {
     const [loggedInUSer, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
@@ -23,13 +24,16 @@ const handleGoogleLogIn=()=>{
         history.replace(from);
          console.log(result);
       }).catch((error) => {
-      
+        
       });
 }
    
     return (
         <div>
-           <button onClick={handleGoogleLogIn}>Sign in with email</button> 
+      
+         <button onClick={handleGoogleLogIn} > Sign in with email </button> 
+           <p>Don't have an account? <Link to='/register'>Create an acccount</Link></p>
+          
         </div>
     );
 };

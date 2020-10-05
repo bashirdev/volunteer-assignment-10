@@ -11,28 +11,41 @@ import Blog from './components/Blog/Blog';
 import Register from './components/Register/Register';
 import PrivateRoute from './components/Login/PrivateRoute';
 import Login from './components/Login/Login';
+import Common from './components/Common/Common';
 
 export const UserContext=createContext();
 
 const App = () => {
     const [loggedInUSer, setLoggedInUser] =useState({});
+    const [taskAdded, setTaskAdded] =useState({});
+
     return (
         <>
-        <UserContext.Provider value={[loggedInUSer,setLoggedInUser]}>
+        <UserContext.Provider value={[taskAdded, setTaskAdded, loggedInUSer,setLoggedInUser]}>
+        
         <Router>
         <Navber />
         <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/donation' component={Donation} />
-        <Route exact path='/event' component={Event} />
-        <Route exact path='/blog' component={Blog} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
-        <PrivateRoute exact path='/register' component={Register} />
-        <Redirect to='/' />
+        <Route  path='/home'>
+            <Home />
+        </Route>
+       <Route  path='/login'>
+        <Login />
+        </Route>
+        <Route  path='/register'>
+        <Register />
+        </Route>
+        <PrivateRoute  path='/eventType/:title'>
+            <Event />
+        </PrivateRoute>
+        <Route exact path='/'>
+        <Home />
+        </Route>
+        {/* <Redirect to='/' /> */}
          </Switch>
          <Footer />
          </Router>
+    
          </UserContext.Provider>
         </>
     );

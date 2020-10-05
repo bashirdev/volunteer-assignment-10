@@ -1,32 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../App';
 
 const Register = () => {
 
-    const [formData, setFormData] = useState({
-      
-        fullname:'',
-        phone:'',
-        email:'',
-        message:'',
-
-    });
-
+    const [taskAdded, setTaskAdded, loggedInUSer,setLoggedInUser] = useContext(UserContext);
+  const history = useHistory();
     const InputEvent =(event)=>{
-          const {name, value} = event.target;
-          setFormData((preVal)=> {
-              return{
-                  ...preVal,
-                  [name] : value,
-              };
-          });
+        setLoggedInUser({...loggedInUSer, ...taskAdded, [event.target.name]: event.target.value}) ;
+         
     };
+
+    console.log(loggedInUSer);
 
     const formSubmit = (e)=>{
         e.preventDefault();
-        alert(`Name: ${formData.fullname} 
-         Mobile Number: ${formData.phone} 
-         Email: ${formData.email} 
-        Message: ${formData.message} `)
+     fetch('http://localhost:5000/registerForTask/',{
+        method:'POST',
+        headers:{'Content-Type' : 'application/json'},
+        body:JSON.stringify(loggedInUSer) 
+     })
+    .then(res=>res.json())
+     .then(data=>console.log(data))
+     
         
     }
     return (
@@ -39,39 +35,39 @@ const Register = () => {
                    <div className="col-md-6 col-10 mx-auto">
                        <form onSubmit={formSubmit}>
                        <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Full Name</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput1" 
-                    name="fullname"
-                    value={formData.fullname}
+                    <label  class="form-label">Full Name</label>
+<input type="text" class="form-control"  name="fullname" value={taskAdded.name}
                     onChange={InputEvent}
-                    placeholder="Your Name" />
-                    </div>
-                    <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput1" 
-                    name="phone"
-                    value={formData.phone}
-                    onChange={InputEvent}
-                    placeholder="MObile Number" />
+                    placeholder="Your Name" required />
                     </div>
                     <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" 
-                    name="email"
-                    value={formData.email}
+ <input type="email" class="form-control" id="exampleFormControlInput1"  name="email"
+                    value={taskAdded.email}
                     onChange={InputEvent}
-                    placeholder="name@example.com" />
+                    placeholder="name@example.com"  required />
                     </div>
                     <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" 
-                    name="message"
-                    value={formData.message}
+                    <label for="exampleFormControlInput1" class="form-label">Date</label>
+ <input type="date" class="form-control" id="exampleFormControlInput1"  name="date" required
                     onChange={InputEvent}
-                     rows="3">
-
-                     </textarea>
+                    placeholder="date" />
                     </div>
+                    <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Title </label>
+ <input type="text" class="form-control" id="exampleFormControlInput1"  name="title"
+                   value={loggedInUSer.title}
+                    onChange={InputEvent}
+                    placeholder={loggedInUSer.title} required />
+                    </div>
+                    <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Description</label>
+ <input type="text" class="form-control" id="exampleFormControlInput1"  name="description"
+                    onChange={InputEvent}
+                    placeholder="description" required />
+                    </div>  
+                    
+                    
                 <div class="col-12">
                     <button class="btn btn-outline-primary" type="submit">Submit form</button>
                 </div>

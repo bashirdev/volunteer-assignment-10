@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../App';
 import Card from '../Card/Card';
 import FakeData from '../FakeData/FakeData';
 
 const Home = () => {
+// const eventData=FakeData;
+const [eventTask, setEventTask] = useState([]);
+// const [taskAdded, setTaskAdded] = useContext(UserContext);
+
+useEffect(()=>{
+     fetch('http://localhost:5000/volunteer')
+     .then(res=>res.json())
+     .then(data=>setEventTask(data))
+},[eventTask])
+// const HandlVolunteerEvent=(task)=>{
+
+// const newTask=[...taskAdded, task]
+// console.log(newTask);
+// setEventTask(newTask);
+// setTaskAdded(newTask);
+
+// }
     return (
         <>
           <div className="my-5">
@@ -17,7 +35,7 @@ const Home = () => {
         <div className='col-10 mx-auto'>
        <div className="row gy-4">
        {
-           FakeData.map(data=>  <Card kay={data.id} data={data} />)
+           eventTask.map(data=>  <Card kay={data._id} data={data}  />)
        }
             
        </div>
