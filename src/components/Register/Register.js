@@ -4,16 +4,16 @@ import { UserContext } from '../../App';
 
 const Register = () => {
 
-    const [taskAdded, setTaskAdded, loggedInUSer,setLoggedInUser] = useContext(UserContext);
+    const [ loggedInUSer,setLoggedInUser] = useContext(UserContext);
   const history = useHistory();
     const InputEvent =(event)=>{
-        setLoggedInUser({...loggedInUSer, ...taskAdded, [event.target.name]: event.target.value}) ;
+        setLoggedInUser({...loggedInUSer,  [event.target.name]: event.target.value}) ;
          
     };
 
     console.log(loggedInUSer);
 
-    const formSubmit = (e)=>{
+    const formSubmit = (e,_id)=>{
         e.preventDefault();
      fetch('http://localhost:5000/registerForTask/',{
         method:'POST',
@@ -22,7 +22,7 @@ const Register = () => {
      })
     .then(res=>res.json())
      .then(data=>console.log(data))
-     
+     history.push(`/eventType/${_id}`)
         
     }
     return (
@@ -36,33 +36,33 @@ const Register = () => {
                        <form onSubmit={formSubmit}>
                        <div class="mb-3">
                     <label  class="form-label">Full Name</label>
-<input type="text" class="form-control"  name="fullname" value={taskAdded.name}
+                   <input type="text" class="form-control"  name="fullname" value={loggedInUSer.fullname}
                     onChange={InputEvent}
-                    placeholder="Your Name" required />
+                    placeholder='Fuul name' required />
                     </div>
                     <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Email address</label>
- <input type="email" class="form-control" id="exampleFormControlInput1"  name="email"
-                    value={taskAdded.email}
+                    <input type="email" class="form-control" id="exampleFormControlInput1"  name="email"
+                    value={loggedInUSer.email}
                     onChange={InputEvent}
-                    placeholder="name@example.com"  required />
+                    placeholder='Your email'  required />
                     </div>
                     <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Date</label>
- <input type="date" class="form-control" id="exampleFormControlInput1"  name="date" required
+                    <input type="date" class="form-control" id="exampleFormControlInput1" value={loggedInUSer.date}  name="date" required
                     onChange={InputEvent}
                     placeholder="date" />
                     </div>
                     <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Title </label>
- <input type="text" class="form-control" id="exampleFormControlInput1"  name="title"
+                  <input type="text" class="form-control" id="exampleFormControlInput1"  name="title"
                    value={loggedInUSer.title}
                     onChange={InputEvent}
-                    placeholder={loggedInUSer.title} required />
+                    placeholder='Title here' required />
                     </div>
                     <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Description</label>
- <input type="text" class="form-control" id="exampleFormControlInput1"  name="description"
+ <input type="text" class="form-control" id="exampleFormControlInput1" value={loggedInUSer.description} name="description"
                     onChange={InputEvent}
                     placeholder="description" required />
                     </div>  

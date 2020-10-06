@@ -7,7 +7,7 @@ import Navber from './components/Navber/Navber';
 import Footer from './components/Footer/Footer';
 import Donation from './components/Donation/Donation';
 import Event from './components/Event/Event';
-import Blog from './components/Blog/Blog';
+
 import Register from './components/Register/Register';
 import PrivateRoute from './components/Login/PrivateRoute';
 import Login from './components/Login/Login';

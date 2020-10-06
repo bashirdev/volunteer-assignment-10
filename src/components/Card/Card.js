@@ -10,16 +10,16 @@ const Card = (props) => {
   const history=useHistory();
 
 
-const handleEvent=(id,title,imgUrl)=>{
+const handleEvent=(_id,title,imgUrl)=>{
   setLoggedInUser({...loggedInUSer, ...taskAdded, title: title, imgUrl: imgUrl})
-  history.push(`/eventType/${title}`);
+  history.push(`/eventType/${_id}`);
 }
     return (
         <>
         
      <div className="col-md-3 col-10 mx-auto">
     <div className="card" >
-    {/* <Link  onClick={()=> props.HandlVolunteerEvent(props.data)}> */}
+  
   <img onClick={()=> handleEvent(_id, title, imgUrl)} src={imgUrl} className="card-img-top" alt="..."   />
   <div className="card-body">
     <h5 className="card-title ">{title}</h5>
@@ -38,3 +38,5 @@ export default Card;
     <NavLink to="" className="btn btn-primary">
     Go somewhere
           </NavLink> */}
+
+            {/* <Link  onClick={()=> props.HandlVolunteerEvent(props.data)}> */}

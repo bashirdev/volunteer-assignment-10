@@ -5,6 +5,7 @@ import * as firebase from "firebase/app";
 import firebaseConfig from './FirebaseConfig/FirebaseConfig';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import Event from '../Event/Event';
+import Register from '../Register/Register';
 const Login = () => {
     const [loggedInUSer, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
@@ -22,18 +23,20 @@ const handleGoogleLogIn=()=>{
         const signedInuser ={name: displayName, email}
         setLoggedInUser(signedInuser);
         history.replace(from);
-         console.log(result);
+        //  console.log(result);
       }).catch((error) => {
         
       });
 }
    
     return (
-        <div>
-      
-         <button onClick={handleGoogleLogIn} > Sign in with email </button> 
-           <p>Don't have an account? <Link to='/register'>Create an acccount</Link></p>
-          
+        <div >
+      <div style={{textAlign:'center'}}>
+         <button onClick={handleGoogleLogIn} > Sign in with Google </button> 
+          <p > Don't have an account? <Link  to='/register'>Create an acccount</Link></p></div> 
+          <div>
+              <Register />
+          </div>
         </div>
     );
 };
