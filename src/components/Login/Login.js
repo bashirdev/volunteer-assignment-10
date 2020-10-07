@@ -31,11 +31,12 @@ const handleGoogleLogIn=()=>{
    
     return (
         <div >
-      <div style={{textAlign:'center'}}>
+      <div style={{textAlign:'center', marginTop:'200px'}}>
         
-          <p > <Link> <button onClick={handleGoogleLogIn} > Sign in with Google </button> </Link></p></div> 
+          <p > <Link> <button onClick={handleGoogleLogIn} > Sign in with Google </button> </Link></p> 
           <div>
-             
+             <p> <Link to='/register'>Create an Account:</Link></p>
+          </div>
           </div>
         </div>
     );

@@ -2,27 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 import Card from '../Card/Card';
-import Checking from '../Card/Checking';
-import FakeData from '../FakeData/FakeData';
 
 const Home = () => {
 // const eventData=FakeData;
 const [eventTask, setEventTask] = useState([]);
-// const [taskAdded, setTaskAdded] = useContext(UserContext);
+
 
 useEffect(()=>{
      fetch('http://localhost:5000/volunteer')
      .then(res=>res.json())
      .then(data=>setEventTask(data))
 },[])
-// const HandlVolunteerEvent=(task)=>{
 
-// const newTask=[...taskAdded, task]
-// console.log(newTask);
-// setEventTask(newTask);
-// setTaskAdded(newTask);
-
-// }
     return (
         <>
           <div className="my-5">

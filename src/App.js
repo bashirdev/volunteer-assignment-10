@@ -12,6 +12,7 @@ import Register from './components/Register/Register';
 import PrivateRoute from './components/Login/PrivateRoute';
 import Login from './components/Login/Login';
 import Common from './components/Common/Common';
+import EventAdded from './components/EventAdded/EventAdded';
 
 export const UserContext=createContext();
 
@@ -32,11 +33,15 @@ const App = () => {
        <Route  path='/login'>
         <Login />
         </Route>
+       
         <PrivateRoute  path='/register/:title'>
         <Register />
         </PrivateRoute>
+        <Route  path='/register'>
+        <Register />
+        </Route>
         <Route  path='/eventType/:title'>
-            <Event />
+            <EventAdded />
         </Route>
         <Route exact path='/'>
         <Home />
