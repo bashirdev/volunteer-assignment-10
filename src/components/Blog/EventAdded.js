@@ -18,14 +18,14 @@ const EventAdded = () => {
 
 return (
         <>
-      <div classNameName='container-fluid mb-5'>
-    <div className='row'>
-        <div className='row-cols-md-4'>
-       <div className="row gy-4">
+      <div classNameName='container mb-5'>
+      <div className="row">
+    <div className="col-md-3 col-10 mx-auto">
+       <div className=" gy-4">
        <h1> {user.length} added</h1>
            {
               user.map(dat => (
-                <div >
+                <div className="card d-flex">
               <h4>{dat.title}</h4> 
              
               <img style={{width:'200px'}} src={dat.imgUrl} alt='' /> </div>
