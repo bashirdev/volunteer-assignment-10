@@ -32,7 +32,7 @@ const App = () => {
        <Route  path='/login'>
         <Login />
         </Route>
-        <PrivateRoute  path='/register/:_id'>
+        <PrivateRoute  path='/register/:title'>
         <Register />
         </PrivateRoute>
         <Route  path='/eventType/:title'>

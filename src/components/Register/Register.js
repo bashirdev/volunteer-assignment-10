@@ -4,23 +4,24 @@ import { UserContext } from '../../App';
 
 const Register = () => {
 
-    const [ loggedInUSer,setLoggedInUser] = useContext(UserContext);
+    const [taskAdded, setTaskAdded, loggedInUSer,setLoggedInUser] = useContext(UserContext);
     const [singleEvent, setSingleEvent] = useState()
   const history = useHistory();
-  const {_id} = useParams()
+  const {title} = useParams()
     const InputEvent =(event)=>{
-        setLoggedInUser({...loggedInUSer,  [event.target.name]: event.target.value}) ;
+        setLoggedInUser({...loggedInUSer,...taskAdded , [event.target.name]: event.target.value}) ;
          
     };
 
-    useEffect(() => {
-        fetch(`http://localhost:5000/singleEvent/${_id}`)
-        .then(res =>res.json())
-        .then(data=> setSingleEvent(data) )
-    }, [])
+    console.log(loggedInUSer);
+    // useEffect(() => {
+    //     fetch(`http://localhost:5000/singleEvent/`)
+    //     .then(res =>res.json())
+    //     .then(data=>console.log(data))
+    // }, [])
     
 
-    const formSubmit = (e,_id)=>{
+    const formSubmit = (e,)=>{
         e.preventDefault();
      fetch('http://localhost:5000/registerForTask/',{
         method:'POST',
@@ -29,11 +30,8 @@ const Register = () => {
      })
     .then(res=>res.json())
      .then(data=>console.log(data))
-     history.push(`/eventType/${_id}`)
-   
-      
-        
-    }
+     history.push(`/eventType/${title}`)
+   }
     return (
         <>
            <div className="my-5">
@@ -65,9 +63,9 @@ const Register = () => {
                     <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Title </label>
                   <input type="text" class="form-control" id="exampleFormControlInput1"  name="title"
-                   value={singleEvent && singleEvent[0].title}
+                   value={ loggedInUSer && loggedInUSer.title}
                     onChange={InputEvent}
-                    placeholder='Title here' required />
+                    placeholder='Title ' required />
                     </div>
                     <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Description</label>

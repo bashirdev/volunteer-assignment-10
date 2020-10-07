@@ -20,16 +20,16 @@ return (
         <>
       <div classNameName='container-fluid mb-5'>
     <div className='row'>
-        <div className='col-10 mx-auto'>
+        <div className='row-cols-md-4'>
        <div className="row gy-4">
        <h1> {user.length} added</h1>
            {
               user.map(dat => (
-                  <div >
+                <div >
               <h4>{dat.title}</h4> 
-              <div >
-              <img style={{maxWith:'200px'}} src={dat.imgUrl} alt='' /> </div>
-              </div>
+             
+              <img style={{width:'200px'}} src={dat.imgUrl} alt='' /> </div>
+            
             
               )
               )}

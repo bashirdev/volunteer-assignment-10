@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { UserContext } from '../../App';
 import logo from '../../Images/logos/Group 1329.png'
 const Navber = () => {
+  const [loggedInUSer, setLoggedInUser] = useContext(UserContext);
+  useEffect(()=>{
+
+  },[])
     return (
         <>
         <div className='container-fluid nav_bg'>
@@ -30,7 +35,9 @@ const Navber = () => {
           <NavLink activeClassName='menu_active' className="nav-link" to="/blog">Blog</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink activeClassName='menu_active' className="nav-link" to="/register">Register</NavLink>
+          <NavLink activeClassName='menu_active' className="nav-link" to="/login">{
+            loggedInUSer.email ? loggedInUSer.name : "Register"
+          }</NavLink>
         </li>
      </ul>
   
