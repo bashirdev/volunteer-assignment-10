@@ -19,7 +19,6 @@ Admin will be able to change the status of orders.
 <h1>Technology Used:</h1>
 <li>React.js</li></br>
 <li>react-hook-form</li></br>
-<li>react-elastic-carousal</li></br>
 <li>react-router-dom</li></br>
 <li>Firebase auth</li></br>
 <li>Firebase hosting</li></br>
